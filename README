@@ -1,0 +1,30 @@
+This repo holds a real-time implementation of the MUSIC algorithm
+written in C for the Beaglebone Black/Green.  MUSIC is short for
+"multiple signal classification", and is a well-known signal
+processing algorithm used for estimating the frequency of an input
+sinusoid in the presence of noise, and also for direction finding in
+radar. Details of the algorithm are provided on Wikipedia:
+https://en.wikipedia.org/wiki/MUSIC_(algorithm)  
+My program estimates the frequency of an input real-time signal -- it
+reads data from the 
+ADC-001 audio experimenter's cape,
+https://github.com/brorson/ADC-001_hardware_information 
+and prints the estimated frequency of the input signal to the
+Beaglebone console at a rate of a few Hz.
+
+The code
+assumes your Beaglebone runs the "Debian 9.2 2017-10-10 4GB SD IoT"
+image, available here:  https://beagleboard.org/latest-images.  A
+description of how to burn this image into your Beaglebone is included
+in this directory.  The code may run on other versions, but I have not
+tested it.
+
+My implementation uses the numerical libraries BLAS and LAPACK,
+which I have built and downloaded to the Beaglebone.  A description of
+how load BLAS and LAPACK onto your Beaglebone is provided in this
+directory.  In the lib subdirectory I have placed pre-built images of
+the required libraries which you can load onto your Beaglebone to use
+this program.
+
+Stuart Brorson
+1.9.2018
