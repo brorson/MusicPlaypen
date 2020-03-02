@@ -8,7 +8,7 @@
 # ARM code
 CC := gcc
 CFLAGS := -O3 -mfpu=vfpv3 -mfloat-abi=hard -march=armv7 -I./include
-LDFLAGS := /usr/lib/arm-linux-gnueabihf/libgfortran.so.3 -l:liblapacke.a -l:liblapack.a -l:cblas_LINUX.a -l:blas_LINUX.a -lm
+LDFLAGS := /usr/lib/arm-linux-gnueabihf/libgfortran.so.3 -l:liblapacke.a -l:liblapack.a -l:libcblas.a -l:libblas.a -lm
 
 SRCS := main.c prussdrv.c adcdriver_host.c spidriver_host.c matrix_utils.c
 OBJS := main.o prussdrv.o adcdriver_host.o spidriver_host.o matrix_utils.o
@@ -20,7 +20,7 @@ INCLUDES := $(addprefix $(INCLUDEDIR)/, prussdrv.h pru_types.h __prussdrv.h prus
 # PRU code
 DEVICE=am335x
 PRU_CC := clpru
-PRU_CC_FLAGS := --silicon_version=3 -I./include -I/usr/include/arm-linux-gnueabihf -D$(DEVICE)
+PRU_CC_FLAGS := --silicon_version=3 -I./include -I/usr/share/ti/cgt-pru/include/ -D$(DEVICE) -i/usr/share/ti/cgt-pru/lib
 PRU_LINKER_SCRIPT := AM335x_PRU.cmd
 PRU_INCLUDES := resource_table_empty.h pru_ctrl.h pru_intc.h pru_cfg.h pru_spi.h
 
